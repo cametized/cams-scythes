@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "camscythe",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "name": "Cam's Scythes",
   "description": "i made scythes - Cametized 2025",
   "authors": ["Cametized, LLEVC"],
@@ -23,7 +23,7 @@
   "mixins": [],
   "depends": {
     "fabricloader": ">=0.19.3",
-    "minecraft": "~26.1",
+    "minecraft": "~26.2",
     "java": ">=25",
     "fabric-api": "*"
   }
