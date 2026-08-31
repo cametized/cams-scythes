@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "camscythe",
-  "version": "${version}",
+  "version": "1.2.3",
   "name": "Cam's Scythes",
   "description": "i made scythes - Cametized 2025",
   "authors": ["Cametized, LLEVC"],
@@ -20,17 +20,11 @@
       "camscythe.Camscythe"
     ]
   },
-  "mixins": [
-    "camscythe.mixins.json",
-    {
-      "config": "camscythe.client.mixins.json",
-      "environment": "client"
-    }
-  ],
-  "accessWidener": "camscythe.accesswidener",
+  "mixins": [],
   "depends": {
-    "fabricloader": ">=${loader_version}",
-    "fabric-api": "*",
-    "minecraft": "${minecraft_version}"
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.1",
+    "java": ">=25",
+    "fabric-api": "*"
   }
 }

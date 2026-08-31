@@ -1,17 +1,15 @@
 package camscythe;
 
-import camscythe.item.EmberglaiveItem;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ToolMaterial;
 
 import java.util.function.Function;
 
@@ -30,36 +28,27 @@ public class ModItems {
     public static final Item EMBERGLAIVE = register(
             "emberglaive",
             Item::new,
-            (new Item.Settings().sword(EMBERGLAIVE_MATERIAL,7.0f,-2.8f))
+            (new Item.Properties().sword(EMBERGLAIVE_MATERIAL,7.0f,-2.8f))
     );
 
     public static final Item PLAYTHING = register(
             "plaything",
             Item::new,
-            (new Item.Settings().sword(PLAYTHING_MATERIAL,8.0f,-2.0f))
+            (new Item.Properties().sword(PLAYTHING_MATERIAL,8.0f,-2.0f))
     );
     public static final Item VINECOG = register(
             "vinecog",
             Item::new,
-            (new Item.Settings().sword(VINECOG_MATERIAL,11.0f,-2.7f))
+            (new Item.Properties().sword(VINECOG_MATERIAL,11.0f,-2.7f))
     );
 
-    private static Item register(String name, java.util.function.Function<RegistryKey<Item>, Item> factory) {
-        RegistryKey<Item> key = RegistryKey.of(RegistryKeys.ITEM, Identifier.of("camscythe", name));
-        return Registry.register(Registries.ITEM, key, factory.apply(key));
+    private static Item register(String name, Function<Item.Properties, Item> factory, Item.Properties settings) {
+        return register(ResourceKey.create(Registries.ITEM,Identifier.fromNamespaceAndPath(Camscythe.MOD_ID,name)),factory,settings);
     }
 
-    private static Item register(String name, Function<Item.Settings, Item> factory, Item.Settings settings) {
-        return register(RegistryKey.of(RegistryKeys.ITEM,Identifier.of("camscythe",name)),factory,settings);
-    }
-
-    private static Item register(RegistryKey<Item> key, Function<Item.Settings, Item> factory, Item.Settings settings) {
-        Item item = (Item)factory.apply(settings.registryKey(key));
-        if (item instanceof BlockItem blockItem) {
-            blockItem.appendBlocks(Item.BLOCK_ITEMS, item);
-        }
-
-        return (Item)Registry.register(Registries.ITEM, key, item);
+    private static Item register(ResourceKey<Item> key, Function<Item.Properties, Item> factory, Item.Properties settings) {
+        Item item = factory.apply(settings.setId(key));
+        return Registry.register(BuiltInRegistries.ITEM, key, item);
     }
 
     public static void initialize() {}

@@ -1,8 +1,8 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "camscythe.mixin.client",
-  "compatibilityLevel": "JAVA_21",
+  "package": "camscythe.client.mixin",
+  "compatibilityLevel": "JAVA_25",
   "client": [
   ],
   "injectors": {

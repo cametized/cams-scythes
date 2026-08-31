@@ -31,17 +31,17 @@ public class Camscythe implements ModInitializer {
 
             if (heldItem.equals(ModItems.EMBERGLAIVE)) {
                 spawnSlash(serverWorld, livingTarget, true, false, 0xFFFF4400); // orange-red
-                if (player.getCurrentItemAttackStrengthDelay() > 0.9f) {
+                if (player.getAttackStrengthScale(0.5f) > 0.9f) {
                     livingTarget.setRemainingFireTicks(8*20);
                     serverWorld.playSound(null, x, y, z,
                             SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 1.0f, 1.0f);
                 }
             } else if (heldItem.equals(ModItems.PLAYTHING)) {
                 spawnSlash(serverWorld, livingTarget, true, true, 0xFFFFD700); // gold
-                if (!(player.getCurrentItemAttackStrengthDelay() > 0.9f)) {
-                    player.playSound(SoundEvents.PLAYER_ATTACK_SWEEP,0.75f,1.125f);
+                if (!(player.getAttackStrengthScale(0.5f) > 0.9f)) {
+                    player.playSound(SoundEvents.PLAYER_ATTACK_SWEEP, 1.0f, 1.125f);
                 }
-                Logger.getGlobal().info(String.valueOf(player.getAttributeValue(Attributes.ATTACK_SPEED)));
+                //Logger.getGlobal().info(String.valueOf(player.getAttributeValue(Attributes.ATTACK_SPEED)));
             } else if (heldItem.equals(ModItems.VINECOG)) {
                 spawnSlash(serverWorld, livingTarget, true, false, 0xFF33CC00); // green
             }
@@ -55,7 +55,7 @@ public class Camscythe implements ModInitializer {
         if (sweep) {
             world.sendParticles(
                     ParticleTypes.SWEEP_ATTACK,
-                    target.getX(), target.getY()+target.getY()/2, target.getZ(),
+                    target.getX(), target.getY()+target.getBbHeight()/2, target.getZ(),
                     1,
                     target.getBoundingBox().getXsize()/2, target.getBoundingBox().getYsize()/2, target.getBoundingBox().getZsize()/2,
                     0.0
