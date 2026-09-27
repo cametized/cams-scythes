@@ -5,7 +5,9 @@
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
-          { "items": "minecraft:netherite_axe" }
+          {
+            "items": "minecraft:netherite_axe"
+          }
         ]
       }
     },
@@ -13,15 +15,35 @@
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
-          { "items": "minecraft:diamond" }
+          {
+            "items": "minecraft:diamond"
+          }
+        ]
+      }
+    },
+    "has_vines": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:vine"
+          }
         ]
       }
     }
   },
   "requirements": [
-    ["has_netherite_axe", "has_diamond"]
+    [
+      "has_netherite_axe",
+      "has_vines"
+    ],
+    [
+      "has_diamond"
+    ]
   ],
   "rewards": {
-    "recipes": ["camscythe:vinecog"]
+    "recipes": [
+      "camscythe:vinecog"
+    ]
   }
 }
